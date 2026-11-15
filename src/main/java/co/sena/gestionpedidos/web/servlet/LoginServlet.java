@@ -56,7 +56,10 @@ public class LoginServlet extends ServletBase {
             mostrarVista(solicitud, respuesta, "login");
             return;
         }
-        solicitud.changeSessionId();
+        if (solicitud.getSession(false) != null) {
+            // Evita la fijación de sesión: el identificador cambia al autenticarse.
+            solicitud.changeSessionId();
+        }
         HttpSession sesion = solicitud.getSession();
         sesion.setAttribute(ATRIBUTO_USUARIO_SESION, usuario.get());
         sesion.setMaxInactiveInterval(MINUTOS_INACTIVIDAD * 60);
