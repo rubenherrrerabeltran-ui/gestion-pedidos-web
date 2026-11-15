@@ -1,0 +1,19 @@
+# Compilación Maven
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+nbproject/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Credenciales locales (no subir contraseñas)
+db-local.properties
+*.env
