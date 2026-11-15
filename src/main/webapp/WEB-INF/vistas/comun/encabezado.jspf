@@ -1,0 +1,41 @@
+<%--
+  Fragmento de encabezado incluido con la directiva include (inclusión estática en tiempo de traducción).
+  Usa la variable tituloPagina declarada por la página que lo incluye.
+--%>
+<%@ page import="co.sena.gestionpedidos.modelo.Usuario" %>
+<%@ page import="co.sena.gestionpedidos.modelo.Rol" %>
+<%
+    Usuario usuarioEncabezado = (Usuario) session.getAttribute("usuarioSesion");
+    String rutaActual = request.getServletPath();
+%>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= tituloPagina %> | Gestión de Pedidos</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
+</head>
+<body>
+<header class="barra">
+    <a class="marca" href="${pageContext.request.contextPath}/inicio">
+        <span class="marca-icono">GP</span>
+        <span>Gestión de Pedidos</span>
+    </a>
+    <% if (usuarioEncabezado != null) { %>
+    <nav class="menu">
+        <a href="${pageContext.request.contextPath}/inicio" class="<%= rutaActual.equals("/inicio") ? "activo" : "" %>">Inicio</a>
+        <a href="${pageContext.request.contextPath}/productos" class="<%= rutaActual.equals("/productos") ? "activo" : "" %>">Productos</a>
+        <a href="${pageContext.request.contextPath}/pedidos" class="<%= rutaActual.equals("/pedidos") ? "activo" : "" %>">Pedidos</a>
+        <% if (usuarioEncabezado.getRol() == Rol.ADMINISTRADOR) { %>
+        <a href="${pageContext.request.contextPath}/usuarios" class="<%= rutaActual.equals("/usuarios") ? "activo" : "" %>">Usuarios</a>
+        <% } %>
+    </nav>
+    <div class="sesion">
+        <span>${gp:esc(sessionScope.usuarioSesion.nombre)} <small>(${sessionScope.usuarioSesion.rol})</small></span>
+        <a class="boton boton-claro" href="${pageContext.request.contextPath}/logout">Salir</a>
+    </div>
+    <% } %>
+</header>
+<main class="contenido">
+    <jsp:include page="/WEB-INF/vistas/comun/mensajes.jsp"/>

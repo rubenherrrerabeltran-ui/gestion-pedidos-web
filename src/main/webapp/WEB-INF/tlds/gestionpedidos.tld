@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Funciones EL propias del proyecto (prefijo gp) -->
+<taglib xmlns="https://jakarta.ee/xml/ns/jakartaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-jsptaglibrary_3_1.xsd"
+        version="3.1">
+    <description>Funciones de apoyo para las vistas del Sistema de Gestión de Pedidos</description>
+    <tlib-version>1.0</tlib-version>
+    <short-name>gp</short-name>
+    <uri>https://sena.edu.co/gestionpedidos/funciones</uri>
+
+    <function>
+        <description>Escapa caracteres HTML para prevenir XSS</description>
+        <name>esc</name>
+        <function-class>co.sena.gestionpedidos.web.util.Html</function-class>
+        <function-signature>java.lang.String escapar(java.lang.Object)</function-signature>
+    </function>
+    <function>
+        <description>Da formato de pesos colombianos a un valor</description>
+        <name>moneda</name>
+        <function-class>co.sena.gestionpedidos.web.util.Html</function-class>
+        <function-signature>java.lang.String moneda(java.math.BigDecimal)</function-signature>
+    </function>
+</taglib>

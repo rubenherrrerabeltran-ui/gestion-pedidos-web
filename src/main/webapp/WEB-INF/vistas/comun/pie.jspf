@@ -1,0 +1,14 @@
+<%-- Fragmento de pie de página. Usa una declaración JSP y los objetos implícitos application y session. --%>
+<%!
+    /** Declaración JSP: método disponible en el servlet generado a partir de la página. */
+    private String recortar(String texto, int longitud) {
+        return texto.length() <= longitud ? texto : texto.substring(0, longitud) + "…";
+    }
+%>
+</main>
+<footer class="pie">
+    <span>SENA · Análisis y Desarrollo de Software · Ficha 3186691 · Rubén Darío Herrera Beltrán</span>
+    <span>Servidor: <%= application.getServerInfo() %> · Sesión <%= recortar(session.getId(), 8) %></span>
+</footer>
+</body>
+</html>
